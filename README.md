@@ -41,6 +41,7 @@ The dataset contains labeled news articles, which are used to train the model. T
 
 ## Streamlit App
 The Streamlit app provides an interactive interface where users can input a news article's description or content, and the model will predict the article's category.
+Visit my Streamlt Interface [HERE](https://news-article-classification-using-naive-bayes-sid0517.streamlit.app/)
 
 ![image](https://github.com/user-attachments/assets/3ae3edb7-73bd-4176-9221-e9f29807c5dd)
 
