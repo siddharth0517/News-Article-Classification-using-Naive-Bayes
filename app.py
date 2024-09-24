@@ -11,11 +11,13 @@ model = joblib.load('naive_bayes_model.pkl')  # Save your model using joblib
 # Load the TF-IDF Vectorizer
 vectorizer = joblib.load('tfidf_vectorizer.pkl')  # Save your vectorizer using joblib
 
-# Text Preprocessing Function
+# Preprocess function without NLTK
 def preprocess_text(text):
-    tokens = nltk.word_tokenize(text)
-    tokens = [word.lower() for word in tokens if word.isalpha()]
+    # Convert to lowercase and remove non-alphabetic characters
+    tokens = text.lower().split()
+    tokens = [word for word in tokens if word.isalpha()]
     return " ".join(tokens)
+
 
 # Streamlit App
 st.title("News Article Classifier")
