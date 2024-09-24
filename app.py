@@ -19,24 +19,32 @@ def preprocess_text(text):
     return " ".join(tokens)
 
 
-# Streamlit App
+# Define category mapping
+category_mapping = {
+    1: "World News",
+    2: "Sports",
+    3: "Business",
+    4: "Technology"
+}
+
+# Streamlit UI
 st.title("News Article Classifier")
 
-# Input from the user
-user_input = st.text_area("Enter a news article description for classification:")
+user_input = st.text_area("Enter a news article description:")
 
-if st.button('Classify'):
+if st.button("Classify"):
     if user_input:
-        # Preprocess the input
         clean_input = preprocess_text(user_input)
-        
-        # Vectorize the input
         input_vector = vectorizer.transform([clean_input])
         
-        # Make a prediction
-        prediction = model.predict(input_vector)[0]
+        # Predict the class
+        predicted_class = model.predict(input_vector)[0]
+        
+        # Map the class index to category label
+        category_label = category_mapping.get(predicted_class, "Unknown Category")
         
         # Display the result
-        st.write(f"The predicted class for this article is: {prediction}")
+        st.write(f"The predicted class for this article is: {category_label}")
     else:
-        st.write("Please enter a news article description.")
+        st.write("Please enter a description.")
+
